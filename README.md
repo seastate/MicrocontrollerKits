@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="http://www.fillmurray.com/460/300">
+  <img width="2048" height="287" src="https://raw.githubusercontent.com/publicsensors/MicrocontrollerKits/master/images/website_banner8-2048x287.png">
 </p>
 
 # MicrocontrollerKits
