@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/publicsensors/MicrocontrollerKits/master/images/website_banner8-2048x287.png">
+  <img src="https://raw.githubusercontent.com/publicsensors/MicrocontrollerKits/master/images/PS_bannerLogo.png">
 </p>
 
 # MicrocontrollerKits
