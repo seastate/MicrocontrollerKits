@@ -13,13 +13,13 @@ from time import sleep_ms
 class read_temp:
 
     def __init__(self):
-        p12 = Pin('D10', Pin.OUT)  # Pin 12 is power supplied to the DS18B20, V+
+        p12 = Pin('D9', Pin.OUT)  # Pin 12 is power supplied to the DS18B20, V+
         p12.value(1)            # set Pin 12 to 3V
 
         #p14 = Pin(14, Pin.OUT)  # Pin 14 is GND for the DS18B20
         #p14.value(0)            # Set Pin 14 to 0V
 
-        ow = OneWire(Pin('D9'))   # Pin 13 is the data pin for the DS18B20
+        ow = OneWire(Pin('D10'))   # Pin 13 is the data pin for the DS18B20
         self.ds = DS18X20(ow)        # Initialize a ds18b20 object
         self.roms = self.ds.scan()   # Find all the DS18B20 sensors that are attached (we only have one)
 
