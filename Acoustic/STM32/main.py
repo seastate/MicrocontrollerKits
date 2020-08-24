@@ -5,7 +5,7 @@ import hcsr04
 
 def main():
     button = machine.Pin('D13', machine.Pin.IN, machine.Pin.PULL_UP)
-    sensor = hcsr04.HCSR04(trigger_pin = 'D10', echo_pin = 'D9', c = 300)
+    sensor = hcsr04.HCSR04(trigger_pin = 'D10', echo_pin = 'D9', c = 343)
     time.sleep(1)
     i2c = I2C(1, I2C.MASTER)
     lcd = I2cLcd(i2c, 0x27,2,16)
@@ -19,5 +19,6 @@ def main():
             dist = sensor.distance()/10 # return is in mm, report in cm
             lcd.clear()
             lcd.putstr(str(dist)+" cm")
+            print(str(dist)+" cm")
         elif not first and second:
             pass
