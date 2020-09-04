@@ -16,7 +16,7 @@ def main():
         time.sleep(0.01)
         second = button.value()
         if first and not second:
-            dist = sensor.distance()/10 # return is in mm, report in cm
+            dist = sensor.distance() # return is in cm
             lcd.clear()
             lcd.putstr(str(dist)+" cm")
             print(str(dist)+" cm")
