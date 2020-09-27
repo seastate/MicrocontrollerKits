@@ -9,8 +9,9 @@ print(sys_info)
 platform=sys_info[4]
 
 
-if platform.find('STM32F405RG')>0:  # Board-specific definitions: STM32f405 Feather
+if platform.find('Adafruit Feather STM32F405 with STM32F405RG')>-1:  # Board-specific definitions: STM32f405 Feather
     
+    print('Loading definitions for STM32 Feather')
     from machine import Pin, UART
 
     p_pwr1 = Pin('D9', Pin.OUT)  # Pin 12 is power supplied to the DS18B20, V+
@@ -19,12 +20,13 @@ if platform.find('STM32F405RG')>0:  # Board-specific definitions: STM32f405 Feat
     #uartGPS= UART(4, 9600)
     button = Pin('D13', Pin.IN, Pin.PULL_UP)
 
-elif platform.find('ESP8266')>0:  # Board-specific definitions: ESP8266 Huzzah Feather/Breakout Board
+elif platform.find('ESP module with ESP8266')>-1:  # Board-specific definitions: ESP8266 Huzzah Feather/Breakout Board
+    print('Loading definitions for ESP8266')
 
-    pass
 
-elif platform.find('PYBv1.1')>0:  # Board-specific definitions: Pyboard v1.1
-    
+elif platform.find('PYBv1.1 with STM32F405RG')>-1:  # Board-specific definitions: Pyboard v1.1
+
+    print('Loading definitions for PYBv1.1')
     from machine import Pin, UART
     from pyb import Switch
 
@@ -32,7 +34,7 @@ elif platform.find('PYBv1.1')>0:  # Board-specific definitions: Pyboard v1.1
     p_pwr2 = Pin('X18', Pin.OUT)  # Pin X18 is power supplied to the GPS, V+
     p_DS18B20 = Pin('X20', Pin.IN)  # Pin X20 is the data pin for DS18B20 temperature sensors
     uartGPS= UART(4, 9600)
-    button = Switch()  # use onbpoard USR button
+    button = Switch()  # use onboard USR button
     #p_batt=14
     #p_sens=4
     #p_I2Cscl=13

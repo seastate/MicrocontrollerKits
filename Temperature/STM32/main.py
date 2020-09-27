@@ -1,19 +1,24 @@
 import machine
 import time
-import read_temp
+
 from pyb import I2C
 from pyb_i2c_lcd import I2cLcd
 
 from platform_defs import button
+import read_temp
 
 def main():
     #button = machine.Pin('D13', machine.Pin.IN, machine.Pin.PULL_UP)
     sensor = read_temp.read_temp()
     time.sleep(1)
-    i2c = I2C(1, I2C.MASTER)
-    lcd = I2cLcd(i2c, 0x27,2,16)
-    lcd.clear()
-    lcd.putstr("Ready!")
+    try:
+        i2c = I2C(1, I2C.MASTER)
+        lcd = I2cLcd(i2c, 0x27,2,16)
+        lcd.clear()
+        lcd.putstr("Ready!")
+    except:
+        print('LCD not registered...')
+        
     while True:
         first = button.value()
         time.sleep(0.01)
@@ -22,4 +27,5 @@ def main():
             sensor.print_temp()
         elif not first and second:
             pass
+
 main()
