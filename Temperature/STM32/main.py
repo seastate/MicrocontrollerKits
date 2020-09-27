@@ -1,18 +1,19 @@
-import machine
-import time
+# Initialize microcontrollers for PublicSensors/SensoresPublicos temperature activities
 
-from pyb import I2C
-from pyb_i2c_lcd import I2cLcd
+from platform_defs import *
 
-from platform_defs import button
+from machine import I2C
+from time import sleep
+from esp8266_i2c_lcd import I2cLcd
+
 import read_temp
 
 def main():
-    #button = machine.Pin('D13', machine.Pin.IN, machine.Pin.PULL_UP)
+
     sensor = read_temp.read_temp()
-    time.sleep(1)
+    sleep(1)
     try:
-        i2c = I2C(1, I2C.MASTER)
+        i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
         lcd = I2cLcd(i2c, 0x27,2,16)
         lcd.clear()
         lcd.putstr("Ready!")
@@ -21,7 +22,7 @@ def main():
         
     while True:
         first = button.value()
-        time.sleep(0.01)
+        sleep(0.01)
         second = button.value()
         if first and not second:
             sensor.print_temp()
