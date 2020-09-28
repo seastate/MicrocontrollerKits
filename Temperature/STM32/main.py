@@ -18,8 +18,8 @@ def main():
         lcd.clear()
         lcd.putstr("Ready!")
     except:
-        print('LCD not registered...')
-        
+        lcd.putstr("Ready!\n"+chr(0)+'Listo!')
+
     while True:
         first = button.value()
         sleep(0.01)
