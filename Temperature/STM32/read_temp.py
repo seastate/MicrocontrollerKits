@@ -1,14 +1,16 @@
 # This script prints temperature readings from a DS18B20 sensor
 
-from machine import Pin
-from pyb import I2C
-from pyb_i2c_lcd import I2cLcd
+# Import platform-specific definitions
+from platform_defs import *
+
+from machine import Pin, I2C
+#from pyb import I2C
+from esp8266_i2c_lcd import I2cLcd
+#from pyb_i2c_lcd import I2cLcd
 from onewire import OneWire
 from ds18x20 import DS18X20
 from time import sleep_ms
 
-# Import platform-specific definitions
-from platform_defs import *
 
 # -------------------------------------------------------------------------------
 # Set up pins for the DS18B20
@@ -33,7 +35,8 @@ class read_temp:
     # -------------------------------------------------------------------------------
 
     def print_temp(self):
-        i2c = I2C(1, I2C.MASTER)
+        i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
+        #i2c = I2C(1, I2C.MASTER)
         try:
             lcd = I2cLcd(i2c, 0x27,2,16)
             lcdF = 1
@@ -50,7 +53,8 @@ class read_temp:
     # Get continuous temperature measurements
     # -------------------------------------------------------------------------------
     def print_temps_start(self,samp_max=1000):
-        i2c = I2C(1, I2C.MASTER)
+        i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
+        #i2c = I2C(1, I2C.MASTER)
         try:
             lcd = I2cLcd(i2c, 0x27,2,16)
             lcdF = 1
