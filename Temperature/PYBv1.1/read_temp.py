@@ -1,16 +1,11 @@
 # This script prints temperature readings from a DS18B20 sensor
 
-# Import platform-specific definitions
-from platform_defs import *
-
-from machine import Pin, I2C
-#from pyb import I2C
-from esp8266_i2c_lcd import I2cLcd
-#from pyb_i2c_lcd import I2cLcd
+from machine import Pin
+from pyb import I2C
+from pyb_i2c_lcd import I2cLcd
 from onewire import OneWire
 from ds18x20 import DS18X20
 from time import sleep_ms
-
 
 # -------------------------------------------------------------------------------
 # Set up pins for the DS18B20
@@ -18,15 +13,13 @@ from time import sleep_ms
 class read_temp:
 
     def __init__(self):
-        #p12 = Pin('D9', Pin.OUT)  # Pin 12 is power supplied to the DS18B20, V+
-        #p12.value(1)            # set Pin 12 to 3V
-        p_pwr1.value(1)
+        p12 = Pin('D9', Pin.OUT)  # Pin 12 is power supplied to the DS18B20, V+
+        p12.value(1)            # set Pin 12 to 3V
 
         #p14 = Pin(14, Pin.OUT)  # Pin 14 is GND for the DS18B20
         #p14.value(0)            # Set Pin 14 to 0V
 
-        ow = OneWire(p_DS18B20)   # Pin 13 is the data pin for the DS18B20
-        #ow = OneWire(Pin('D10'))   # Pin 13 is the data pin for the DS18B20
+        ow = OneWire(Pin('D10'))   # Pin 13 is the data pin for the DS18B20
         self.ds = DS18X20(ow)        # Initialize a ds18b20 object
         self.roms = self.ds.scan()   # Find all the DS18B20 sensors that are attached (we only have one)
 
@@ -35,8 +28,7 @@ class read_temp:
     # -------------------------------------------------------------------------------
 
     def print_temp(self):
-        i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
-        #i2c = I2C(1, I2C.MASTER)
+        i2c = I2C(1, I2C.MASTER)
         try:
             lcd = I2cLcd(i2c, 0x27,2,16)
             lcdF = 1
@@ -53,8 +45,7 @@ class read_temp:
     # Get continuous temperature measurements
     # -------------------------------------------------------------------------------
     def print_temps_start(self,samp_max=1000):
-        i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
-        #i2c = I2C(1, I2C.MASTER)
+        i2c = I2C(1, I2C.MASTER)
         try:
             lcd = I2cLcd(i2c, 0x27,2,16)
             lcdF = 1
