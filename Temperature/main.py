@@ -16,6 +16,8 @@ def main():
         i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
         lcd = I2cLcd(i2c, 0x27,2,16)
         lcd.clear()
+        # Add comment to distinguish from main.py scripts for other sensors
+        #lcd.putstr("Ready to read temperatures!\n"+chr(0)+'Listo para leer temperaturas!')
         lcd.putstr("Ready!\n"+chr(0)+'Listo!')
     except:
         print('LCD not registered...')

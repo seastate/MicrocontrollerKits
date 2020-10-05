@@ -27,7 +27,17 @@ if platform.find('Adafruit Feather STM32F405 with STM32F405RG')>-1:  # Board-spe
 
 elif platform.find('ESP module with ESP8266')>-1:  # Board-specific definitions: ESP8266 Huzzah Feather/Breakout Board
     print('Loading definitions for ESP8266')
-    from machine import Pin
+
+    from machine import Pin, UART
+    from esp import osdebug # stop annoying WiFi messages
+    osdebug(None)
+    from uos import dupterm
+    dupterm(UART(0, 115200), 1) # echo UART to terminal
+    # Uncomment to automatically start webrepl
+    #import webrepl
+    #webrepl.start()
+    import gc
+    gc.collect()
     
     board='esp8266'
     p_pwr1 = Pin(13, Pin.OUT)  # Pin 12 is power supplied to the DS18B20, V+
@@ -52,10 +62,9 @@ elif platform.find('PYBv1.1 with STM32F405RG')>-1:  # Board-specific definitions
     button = Switch()  # use onboard USR button
     #p_batt=14
     #p_sens=4
-    #p_I2Cscl_lbl=13
-    #p_I2Csda_lbl=12
-    p_I2Cscl_lbl='SCL'
-    p_I2Csda_lbl='SDA'
+    # Define default I2C pins
+    p_I2Cscl_lbl='X9'
+    p_I2Csda_lbl='X10'
 
 
 '''
