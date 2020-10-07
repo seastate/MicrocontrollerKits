@@ -10,7 +10,7 @@ def main():
     i2c = I2C(1, I2C.MASTER)
     lcd = I2cLcd(i2c, 0x27,2,16)
     lcd.clear()
-    lcd.putstr("Ready for\nDistance!")
+    lcd.putstr("Ready!\n"+chr(0)+'Listo!')
     while True:
         first = button.value()
         time.sleep(0.01)
