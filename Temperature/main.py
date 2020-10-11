@@ -19,16 +19,16 @@ def main():
         # Add comment to distinguish from main.py scripts for other sensors
         #lcd.putstr("Ready to read temperatures!\n"+chr(0)+'Listo para leer temperaturas!')
         lcd.putstr("Ready!\n"+chr(0)+'Listo!')
+
+        while True:
+            first = button.value()
+            sleep(0.01)
+            second = button.value()
+            if first and not second:
+                sensor.print_temp()
+            elif not first and second:
+                pass
     except:
         print('LCD not registered...')
-
-    while True:
-        first = button.value()
-        sleep(0.01)
-        second = button.value()
-        if first and not second:
-            sensor.print_temp()
-        elif not first and second:
-            pass
 
 main()
