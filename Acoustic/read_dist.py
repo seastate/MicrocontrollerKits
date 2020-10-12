@@ -4,10 +4,9 @@
 from platform_defs import *
 
 from machine import Pin, I2C
-from esp8266_i2c_lcd import I2cLcd
+from i2c_lcd import I2cLcd
 import hcsr04
 from time import sleep_ms
-
 
 # -------------------------------------------------------------------------------
 # Set up pins for the DS18B20
@@ -17,10 +16,10 @@ class read_dist:
     def __init__(self):
         p_pwr1.value(1)
 
-        self.sensor = hcsr04.HCSR04(trigger_pin = 'D10', echo_pin = 'D9', c = 343)
+        self.sensor = hcsr04.HCSR04(trigger_pin = p_hcsr_trig, echo_pin = p_hcsr_echo, c = hcsr_c)
 
     # -------------------------------------------------------------------------------
-    # Progression for obtaining temperature readings from the sensor
+    # Progression for obtaining distance readings from the sensor
     # -------------------------------------------------------------------------------
 
     def print_dist(self):
@@ -37,7 +36,7 @@ class read_dist:
             lcd.putstr(str(dist)+" cm")
 
     # -------------------------------------------------------------------------------
-    # Get continuous temperature measurements
+    # Get continuous distance measurements
     # -------------------------------------------------------------------------------
     def print_dist_start(self,samp_max=1000,interval=5):
         sleep_microsec=int(1000*interval)
@@ -50,9 +49,9 @@ class read_dist:
             lcdF = 0
         sample_num=1            # Start sample number at 0 so we can count the number of samples we take
         while sample_num <= samp_max:            # This will repeat in a loop, until we terminate with a ctrl-c
-            dist = self.sensor.distance()   # Obtain a temperature reading
+            dist = self.sensor.distance()   # Obtain a distance reading
             sleep_ms(pause_microsec)      # Sleep for 1 sec
-            print("Sample: ",sample_num, ',', str(dist)+" cm") # print the sample number and temperature
+            print("Sample: ",sample_num, ',', str(dist)+" cm") # print the sample number and distance
             print("\n")         # Print a line of space between temp readings so it is easier to read
             if lcdF ==1:
                 lcd.clear()      # Sleep for 1 sec
