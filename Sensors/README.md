@@ -5,7 +5,7 @@ The code in this directory will operate for the following types of microcontroll
 - **ESP8266-based microcontrollers**
   - [HUZZAH Breakout](https://www.adafruit.com/product/2471)
   - [Feather HUZZAH](https://www.adafruit.com/product/2821)
--[**MicroPython pyboard v1.1**](https://www.adafruit.com/product/2390)
+- [**MicroPython pyboard v1.1**](https://www.adafruit.com/product/2390)
 
 To conduct any of the activities on [PublicSensors](https://www.publicsensors.org), you will need the 6 `.py` files contained in this directory:
 - `boot.py`
