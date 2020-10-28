@@ -1,5 +1,5 @@
 #  Definitions of platform-specific pins and commands.
-# 
+#
 #  Currently supported boards are: STM32f405 Feather, ESP8266 Huzzah Feather/Breakout Board, Pyboard v1.1
 
 # Detect platform via uos command
@@ -10,7 +10,7 @@ platform=sys_info[4]
 
 
 if platform.find('Adafruit Feather STM32F405 with STM32F405RG')>-1:  # Board-specific definitions: STM32f405 Feather
-    
+
     print('Loading definitions for STM32 Feather')
     from machine import Pin, UART
 
@@ -23,7 +23,11 @@ if platform.find('Adafruit Feather STM32F405 with STM32F405RG')>-1:  # Board-spe
     # Define default I2C pins
     p_I2Cscl_lbl='SCL'
     p_I2Csda_lbl='SDA'
-
+    #pin definitions for hcsr04/jsn sensors
+    p_hcsr_trig = 'D10'
+    p_hcsr_echo = 'D9'
+    # speed of sound in air (default) for hcsr04
+    hcsr_c = 343
 
 elif platform.find('ESP module with ESP8266')>-1:  # Board-specific definitions: ESP8266 Huzzah Feather/Breakout Board
     print('Loading definitions for ESP8266')
@@ -38,7 +42,7 @@ elif platform.find('ESP module with ESP8266')>-1:  # Board-specific definitions:
     #webrepl.start()
     import gc
     gc.collect()
-    
+
     board='esp8266'
     p_pwr1 = Pin(13, Pin.OUT)  # Pin 12 is power supplied to the DS18B20, V+
     #p_pwr2 = Pin('X18', Pin.OUT)  # Pin X18 is power supplied to the GPS, V+
@@ -47,7 +51,12 @@ elif platform.find('ESP module with ESP8266')>-1:  # Board-specific definitions:
     # Define default I2C pins
     p_I2Cscl_lbl=5
     p_I2Csda_lbl=4
-    
+    #pin definitions for hcsr04/jsn sensors
+    p_hcsr_trig = 12
+    p_hcsr_echo = 14
+    # speed of sound in air (default) for hcsr04
+    hcsr_c = 343
+
 elif platform.find('PYBv1.1 with STM32F405RG')>-1:  # Board-specific definitions: Pyboard v1.1
 
     print('Loading definitions for PYBv1.1')
@@ -73,4 +82,3 @@ elif platform.find('PYBv1.1 with STM32F405RG')>-1:  # Board-specific definitions
 (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.9.4-701-g10bddc5c2 on 2019-01-17', machine='ESP module with ESP8266')
 (sysname='pyboard', nodename='pyboard', release='1.13.0', version='v1.13 on 2020-09-02', machine='PYBv1.1 with STM32F405RG')
 '''
-

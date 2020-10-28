@@ -12,7 +12,7 @@
 from platform_defs import *
 
 from machine import Pin, I2C
-from esp8266_i2c_lcd import I2cLcd
+from i2c_lcd import I2cLcd
 from time import sleep
 
 

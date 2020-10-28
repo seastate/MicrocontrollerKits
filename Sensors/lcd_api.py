@@ -190,3 +190,16 @@ class LcdApi:
     def hal_sleep_us(self, usecs):
         """Sleep for some time (given in microseconds)."""
         time.sleep_us(usecs)
+
+    def scrollstr(self, string):
+        """Used for scrolling text if larger than 16 strings"""
+        text = string+' '
+        self.clear()
+        self.putstr(text[:16])
+        time.sleep(0.3)
+        while len(text) > 0:
+        	self.move_to(0, 0)
+        	self.putstr(text[:16])
+        	self.move_to(0, 1)
+        	time.sleep(0.3)
+        	text = text[1:]
