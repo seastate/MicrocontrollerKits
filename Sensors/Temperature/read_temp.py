@@ -4,7 +4,7 @@
 from platform_defs import *
 
 from machine import Pin, I2C
-from i2c_lcd import I2cLcd
+from esp8266_i2c_lcd import I2cLcd
 from onewire import OneWire
 from ds18x20 import DS18X20
 from time import sleep_ms
@@ -68,3 +68,7 @@ class read_temp:
             lcd.putstr("Done!")
             sleep_ms(2000)
             lcd.clear()
+
+
+
+            
