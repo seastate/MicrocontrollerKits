@@ -1,3 +1,3 @@
 distance = 0
-temperature = 0
-light = 1
+temperature = 1
+light = 0
