@@ -9,11 +9,11 @@ import active_sensors
 
 def main():
     #activeName, activeFuncs =  [[] for i in range(2)] For when we are going to use multiple sensors
-    sensorFuncs = {'light': 'light', 'distance': 'dist', 'temperature': 'temp'}
-    for sensor in [item for item in dir(active_sensors) if not item.startswith("__")]:
-        if eval('active_sensors.'+sensor) == 1:
-            activeName = sensor
-            activeFuncs = sensorFuncs[sensor]
+    sensorFuncs = {'light': 'light', 'distance': 'dist', 'temperature': 'temp', 'GPS': 'GPS'}
+    for sensr in [item for item in dir(active_sensors) if not item.startswith("__")]:
+        if eval('active_sensors.'+sensr) == 1:
+            activeName = sensr
+            activeFuncs = sensorFuncs[sensr]
     exec('import read_'+activeFuncs)
     exec('sensor = read_'+activeFuncs+'.read_'+activeFuncs+'()')
     sleep(1)

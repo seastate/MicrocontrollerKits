@@ -35,7 +35,7 @@ class read_temp:
             lcdF = 0
         self.ds.convert_temp()       # Obtain temp readings from each of those sensors
         sleep_ms(750)           # Sleep for 750 ms, to give the sensors enough time to report their temperature readings
-        print(self.ds.read_temp(self.roms[0]), ' C')
+        print("Temp: ",self.ds.read_temp(self.roms[0]), ' C')
         if lcdF == 1:
             lcd.clear()      # Sleep for 1 sec
             lcd.putstr("Temp: "+str(round(self.ds.read_temp(self.roms[0]),2))+" C")

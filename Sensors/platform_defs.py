@@ -66,8 +66,12 @@ elif platform.find('PYBv1.1 with STM32F405RG')>-1:  # Board-specific definitions
     board='PBDv1.1'
     p_pwr1 = Pin('X19', Pin.OUT)  # Pin X19 is power supplied to the DS18B20, V+
     p_pwr2 = Pin('X18', Pin.OUT)  # Pin X18 is power supplied to the GPS, V+
+    p_pwr3 = Pin('X3', Pin.OUT)  # Pin X3 is power supplied to the GPS, V+
+    p_pwr4 = Pin('X4', Pin.OUT)  # Pin X4 is power supplied to the GPS, V+
     p_DS18B20 = Pin('X20', Pin.IN)  # Pin X20 is the data pin for DS18B20 temperature sensors
     uartGPS= UART(4, 9600)
+    uartAQ= UART(3, 9600)
+    uartAQ.init(9600, bits=8, parity=None, stop=1)
     button = Switch()  # use onboard USR button
     #p_batt=14
     #p_sens=4
