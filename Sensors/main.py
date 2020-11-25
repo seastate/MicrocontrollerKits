@@ -4,7 +4,7 @@ from platform_defs import *
 
 from machine import I2C
 from time import sleep
-from i2c_lcd import I2cLcd
+from esp8266_i2c_lcd import I2cLcd
 import active_sensors
 
 def main():

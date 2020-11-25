@@ -12,8 +12,8 @@ To conduct any of the activities on [PublicSensors](https://www.publicsensors.or
 - `main.py`
 - `active_sensors.py`
 - `platform_defs.py`
-- `i2c_lcd.py`
-- `lcd.api.py`
+- `esp8266_i2c_lcd.py`
+- `lcd_api.py`
 
 In addition, copy all of the `.py` files from the sensor-specific directories:
 - Temperature
