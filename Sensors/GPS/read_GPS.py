@@ -36,7 +36,7 @@ class read_GPS:
             lcdF = 0
         # Create a loop to obtain several sentences from the GPS, to make sure
         # all relevant fields in the parser are populated with recent data
-        sentence_count = 0   
+        sentence_count = 0
         while True:
             if uartGPS.any():
                 stat = self.my_gps.update(chr(uartGPS.readchar()))
@@ -44,7 +44,7 @@ class read_GPS:
                     print(stat)
                     stat = None
                     sentence_count += 1
-        
+
                 if sentence_count == self.num_sentences: # have necessary fixes, output data and return
                     # calculate decimal lat and long
                     dec_lat=self.my_gps.latitude[0]+self.my_gps.latitude[1]/60
@@ -56,7 +56,7 @@ class read_GPS:
 
                     if not display: # if False, return GPS data instead of displaying it
                         return (self.my_gps.date,self.my_gps.timestamp,dec_lat,dec_long)
-                    
+
                     #print('UTC Timestamp:', self.my_gps.timestamp)
                     #print('Date:', self.my_gps.date_string('long'))
                     #print('Latitude:', self.my_gps.latitude_string())
@@ -76,10 +76,10 @@ class read_GPS:
                         lcd.clear()      # Sleep for 1 sec
                         #GPSstr2='GPS: {}:{}:{} {},{}'.format(self.my_gps.timestamp[0],self.my_gps.timestamp[1], \
                         #                                     self.my_gps.timestamp[2],dec_lat,dec_long)
-                        GPSstr2='GPS: {},{}'.format(dec_lat,dec_long)
+                        GPSstr2='GPS: {},\n   {}'.format(dec_lat,dec_long)
                         lcd.putstr(GPSstr2)
                         #lcd.putstr('GPS: {} {} {} {}'.format(self.my_gps.timestamp,self.my_gps.date,dec_lat,dec_long))
-                    break;    
+                    break;
 
     # -------------------------------------------------------------------------------
     # Get continuous GPS readings
@@ -110,7 +110,3 @@ class read_GPS:
             lcd.putstr("Done!")
             sleep_ms(2000)
             lcd.clear()
-
-
-
-            
