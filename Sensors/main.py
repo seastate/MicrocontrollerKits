@@ -35,7 +35,7 @@ def main():
         i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
         lcd = I2cLcd(i2c, 0x27,2,16)
         lcd.clear()
-        lcd.scrollstr('Preparing to measure '+activeName)
+        lcd.scrollstr('Preparing to measure '+', '.join(activeNames))
         lcd.clear()
         lcd.putstr("Ready!\n"+chr(0)+'Listo!')
 
