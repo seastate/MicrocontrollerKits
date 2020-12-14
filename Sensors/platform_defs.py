@@ -9,7 +9,7 @@ print(sys_info)
 platform=sys_info[4]
 
 
-if platform.find('Adafruit Feather STM32F405 with STM32F405RG')>-1:  # Board-specific definitions: STM32f405 Feather
+if platform.find('Feather STM32F405 with STM32F405RG')>-1:  # Board-specific definitions: STM32f405 Feather
 
     print('Loading definitions for STM32 Feather')
     from machine import Pin, UART
