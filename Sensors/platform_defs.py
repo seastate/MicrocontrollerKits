@@ -24,8 +24,8 @@ if platform.find('Feather STM32F405 with STM32F405RG')>-1:  # Board-specific def
     p_I2Cscl_lbl='SCL'
     p_I2Csda_lbl='SDA'
     #pin definitions for hcsr04/jsn sensors
-    p_hcsr_trig = 'D10'
-    p_hcsr_echo = 'D9'
+    p_hcsr_trig = 'D12'
+    p_hcsr_echo = 'D11'
     # speed of sound in air (default) for hcsr04
     hcsr_c = 343
 
