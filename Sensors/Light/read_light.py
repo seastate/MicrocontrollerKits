@@ -34,7 +34,7 @@ class read_light:
         print('full: ',str(full),' ir: ',str(ir))
         if lcdF == 1:
             lcd.clear()      # Sleep for 1 sec
-            lcd.putstr('full: '+str(full)+'\nir: '+str(ir)+' lux: '+str(round(lux,2)))
+            lcd.putstr(str(round(lux,1))+' lux\n('+str(full)+','+str(ir)+')')
 
     # -------------------------------------------------------------------------------
     # Get continuous light measurements
@@ -56,7 +56,7 @@ class read_light:
             print("\n")         # Print a line of space between temp readings so it is easier to read
             if lcdF ==1:
                 lcd.clear()      # Sleep for 1 sec
-                lcd.putstr("# "+str(sample_num)+' full: '+str(full)+'\nir: '+str(ir)+' lux: '+str(round(lux,2)))
+                lcd.putstr("# "+str(sample_num)+': '+str(round(lux,1))+' lux\n('+str(full)+','+str(ir)+')')
             sleep_ms(max(sleep_microsec-pause_microsec,0))      # Wait 5 sec, before repeating the loop and taking another reading
             sample_num+=1       # Increment the sample number for each reading
         if lcdF == 1:
