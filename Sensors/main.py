@@ -25,6 +25,14 @@ def main():
                 sensor = eval('read_'+activeFunc+'.read_'+activeFunc+'()')
                 sleep(1)
                 print('success: queuing sensor driver ',activeFunc)
+                try: # now we need to check if the sensor is even connected
+                    eval('sensor.print_'+activeFunc+'()')
+                    num_sensors+=1
+                    activeNames.append(activeName)
+                    activeFuncs.append(activeFunc)
+                    sensors.append(sensor)
+                except:
+                    print('Error: sensor for ',activeFunc,' is not connected')
                 num_sensors+=1
                 activeNames.append(activeName)
                 activeFuncs.append(activeFunc)
