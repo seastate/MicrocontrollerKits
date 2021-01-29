@@ -22,7 +22,7 @@ class read_dist:
     # Progression for obtaining distance readings from the sensor
     # -------------------------------------------------------------------------------
 
-    def print_dist(self):
+    def print_dist(self,pr=1):
         i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
         try:
             lcd = I2cLcd(i2c, 0x27,2,16)
@@ -31,7 +31,7 @@ class read_dist:
             lcdF = 0
         dist = self.sensor.distance()
         print(str(dist)+" cm")
-        if lcdF == 1:
+        if lcdF == 1 & pr==1:
             lcd.clear()      # Sleep for 1 sec
             lcd.putstr(str(dist)+" cm")
 
@@ -63,6 +63,3 @@ class read_dist:
             lcd.putstr("Done!")
             sleep_ms(2000)
             lcd.clear()
-
-
-            
