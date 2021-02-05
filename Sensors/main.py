@@ -33,7 +33,7 @@ def main():
                     sensors.append(sensor)
                     print('success: able to make measurement using ',activeFunc)
                 else:
-                    print('Error: unable to make measurement using ',activeFunc)
+                    print('Error: unable to connect to ',activeFunc, ' sensor')
             except:
                 print('Error: sensor driver ',activeFunc,' was requested but failed to load')
     try:
