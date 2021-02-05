@@ -19,10 +19,23 @@ class read_dist:
         self.sensor = hcsr04.HCSR04(trigger_pin = p_hcsr_trig, echo_pin = p_hcsr_echo, c = hcsr_c)
 
     # -------------------------------------------------------------------------------
+    # Test the distance sensor
+    # -------------------------------------------------------------------------------
+    def test_dist(self):
+        try: # Try to take a measurement, return 1 if successful, 0 if not
+            dist = self.sensor.distance()
+            if dist == -0.1:
+                return 0
+            else:
+                return 1
+        except:
+            return 0
+
+    # -------------------------------------------------------------------------------
     # Progression for obtaining distance readings from the sensor
     # -------------------------------------------------------------------------------
 
-    def print_dist(self,pr=1):
+    def print_dist(self):
         i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
         try:
             lcd = I2cLcd(i2c, 0x27,2,16)
@@ -30,10 +43,8 @@ class read_dist:
         except:
             lcdF = 0
         dist = self.sensor.distance()
-        if dist == -0.1:
-            return -1
         print(str(dist)+" cm")
-        if lcdF == 1 & pr==1:
+        if lcdF == 1:
             lcd.clear()      # Sleep for 1 sec
             lcd.putstr(str(dist)+" cm")
 
