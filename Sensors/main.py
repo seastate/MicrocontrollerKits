@@ -33,10 +33,6 @@ def main():
                     sensors.append(sensor)
                 except:
                     print('Error: sensor for ',activeFunc,' is not connected')
-                num_sensors+=1
-                activeNames.append(activeName)
-                activeFuncs.append(activeFunc)
-                sensors.append(sensor)
             except:
                 print('Error: sensor driver ',activeFunc,' was requested but failed to load')
     try:

@@ -30,6 +30,8 @@ class read_dist:
         except:
             lcdF = 0
         dist = self.sensor.distance()
+        if dist == -0.1:
+            return -1
         print(str(dist)+" cm")
         if lcdF == 1 & pr==1:
             lcd.clear()      # Sleep for 1 sec
