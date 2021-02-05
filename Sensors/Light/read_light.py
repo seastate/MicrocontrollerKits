@@ -20,10 +20,19 @@ class read_light:
         self.sensor = tsl25x1_sensor()
 
     # -------------------------------------------------------------------------------
+    # Test the light sensor
+    # -------------------------------------------------------------------------------
+    def test_light(self):
+        try: # Try to take a measurement, return 1 if successful, 0 if not
+            full, ir, lux = self.sensor.light()
+            return 1
+        except:
+            return 0
+    # -------------------------------------------------------------------------------
     # Progression for obtaining light readings from the sensor
     # -------------------------------------------------------------------------------
 
-    def print_light(self,pr=1):
+    def print_light(self):
         i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
         try:
             lcd = I2cLcd(i2c, 0x27,2,16)
@@ -32,7 +41,7 @@ class read_light:
             lcdF = 0
         full, ir, lux = self.sensor.light()
         print('full: ',str(full),' ir: ',str(ir))
-        if lcdF == 1 & pr==1:
+        if lcdF == 1:
             lcd.clear()      # Sleep for 1 sec
             lcd.putstr(str(round(lux,1))+' lux\n('+str(full)+','+str(ir)+')')
 
