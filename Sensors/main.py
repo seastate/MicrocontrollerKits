@@ -25,14 +25,15 @@ def main():
                 sensor = eval('read_'+activeFunc+'.read_'+activeFunc+'()')
                 sleep(1)
                 print('success: queuing sensor driver ',activeFunc)
-                try: # now we need to check if the sensor is even connected
-                    eval('sensor.print_'+activeFunc+'(pr=0)')
+                exec('sTest = sensor.test_'+activeFunc+'()')
+                if sTest:
                     num_sensors+=1
                     activeNames.append(activeName)
                     activeFuncs.append(activeFunc)
                     sensors.append(sensor)
-                except:
-                    print('Error: sensor for ',activeFunc,' is not connected')
+                    print('success: able to make measurement using ',activeFunc)
+                else:
+                    print('Error: unable to make measurement using ',activeFunc)
             except:
                 print('Error: sensor driver ',activeFunc,' was requested but failed to load')
     try:
