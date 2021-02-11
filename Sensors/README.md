@@ -45,3 +45,10 @@ distance = 0
 temperature = 0
 light = 1
 ```
+
+You can also operate multiple connected sensors by simply setting more than one sensor to 1:
+```python
+distance = 1
+temperature = 1
+light = 1
+```
