@@ -27,7 +27,7 @@ class read_GPS:
     # Progression for obtaining GPS readings from the sensor
     # -------------------------------------------------------------------------------
 
-    def print_GPS(self,display=True):
+    def print_GPS(self,display=True, pr=1):
         i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
         try:
             lcd = I2cLcd(i2c, 0x27,2,16)
@@ -72,7 +72,7 @@ class read_GPS:
                                                                 dec_lat,dec_long)
                     print(GPSstr)
                     #print('GPS: {} {} {} {}'.format(self.my_gps.timestamp,self.my_gps.date,self.my_gps.latitude,self.my_gps.longitude))
-                    if lcdF == 1:
+                    if lcdF == 1 & pr==1:
                         lcd.clear()      # Sleep for 1 sec
                         #GPSstr2='GPS: {}:{}:{} {},{}'.format(self.my_gps.timestamp[0],self.my_gps.timestamp[1], \
                         #                                     self.my_gps.timestamp[2],dec_lat,dec_long)

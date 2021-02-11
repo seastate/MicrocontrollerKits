@@ -23,9 +23,23 @@ class read_temp:
         self.roms = self.ds.scan()   # Find all the DS18B20 sensors that are attached (we only have one)
 
     # -------------------------------------------------------------------------------
+    # Test the temperature sensor
+    # -------------------------------------------------------------------------------
+    def test_temp(self):
+        if not self.roms: # Check to see if there is a DS18B20 attached/found
+            print('Error: No temperature sensor address found')#
+            return 0
+        else:
+            print('DS18B20 address: ',str(self.roms))
+            try: # Try to take a measurement, return 1 if successful, 0 if not
+                self.ds.read_temp(self.roms[0])
+                return 1
+            except:
+                return 0
+
+    # -------------------------------------------------------------------------------
     # Progression for obtaining temperature readings from the sensor
     # -------------------------------------------------------------------------------
-
     def print_temp(self):
         i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
         try:
@@ -68,7 +82,3 @@ class read_temp:
             lcd.putstr("Done!")
             sleep_ms(2000)
             lcd.clear()
-
-
-
-            

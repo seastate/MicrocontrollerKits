@@ -20,6 +20,15 @@ class read_light:
         self.sensor = tsl25x1_sensor()
 
     # -------------------------------------------------------------------------------
+    # Test the light sensor
+    # -------------------------------------------------------------------------------
+    def test_light(self):
+        try: # Try to take a measurement, return 1 if successful, 0 if not
+            full, ir, lux = self.sensor.light()
+            return 1
+        except:
+            return 0
+    # -------------------------------------------------------------------------------
     # Progression for obtaining light readings from the sensor
     # -------------------------------------------------------------------------------
 

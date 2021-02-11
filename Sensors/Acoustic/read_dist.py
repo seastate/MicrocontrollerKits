@@ -19,6 +19,19 @@ class read_dist:
         self.sensor = hcsr04.HCSR04(trigger_pin = p_hcsr_trig, echo_pin = p_hcsr_echo, c = hcsr_c)
 
     # -------------------------------------------------------------------------------
+    # Test the distance sensor
+    # -------------------------------------------------------------------------------
+    def test_dist(self):
+        try: # Try to take a measurement, return 1 if successful, 0 if not
+            dist = self.sensor.distance()
+            if dist == -0.1:
+                return 0
+            else:
+                return 1
+        except:
+            return 0
+
+    # -------------------------------------------------------------------------------
     # Progression for obtaining distance readings from the sensor
     # -------------------------------------------------------------------------------
 
@@ -63,6 +76,3 @@ class read_dist:
             lcd.putstr("Done!")
             sleep_ms(2000)
             lcd.clear()
-
-
-            
