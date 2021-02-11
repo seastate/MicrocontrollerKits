@@ -1,7 +1,6 @@
 # Initialize microcontrollers for PublicSensors/SensoresPublicos temperature activities
 
 from platform_defs import *
-import active_sensors
 
 from sys import print_exception
 from machine import I2C
@@ -12,12 +11,13 @@ def main():
     global sensor # use a global variable to fix global vs. local namespace issues
     num_sensors=0  # number of sensors successfuly initialized
     activeNames, activeFuncs, sensors =  [[] for i in range(3)]  # Lists for when we are going to use multiple sensors
-    #activeNames = []
-    #activeFuncs = []
-    #sensors = []
     sensorFuncs = {'light': 'light', 'distance': 'dist', 'temperature': 'temp', 'GPS': 'GPS'}
-    for sensr in [item for item in dir(active_sensors) if not item.startswith("__")]:
-        if eval('active_sensors.'+sensr) == 1:
+    try:
+        import active_sensors
+        sensrs = [s for s in [item for item in dir(active_sensors) if not item.startswith("__")] if eval('active_sensors.'+s) == 1]
+    except:
+        sensrs = ['GPS','distance','light','temperature']
+    for sensr in sensrs:
             try:
                 activeName = sensr
                 activeFunc = sensorFuncs[sensr]
@@ -40,7 +40,7 @@ def main():
         i2c = I2C(scl=Pin(p_I2Cscl_lbl),sda=Pin(p_I2Csda_lbl))
         lcd = I2cLcd(i2c, 0x27,2,16)
         lcd.clear()
-        lcd.scrollstr('Preparing to measure '+', '.join(activeNames))
+        lcd.scrollstr('Found the following sensors: '+', '.join(activeNames))
         lcd.clear()
         lcd.putstr("Ready!\n"+chr(0)+'Listo!')
 
