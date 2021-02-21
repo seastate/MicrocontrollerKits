@@ -37,7 +37,7 @@ def main():
 
     if asFlag ==1:
         activeList = [s for s in [item for item in dir(active_sensors) if not item.startswith("__")] if eval('active_sensors.'+s) == 1]
-        activeNamesMeasure = [k for k in activeList if k in (activeNames and activeList)] # check which from the active list work
+        activeNamesMeasure = [k for k in activeList if (k inactive Names) and (k in activeList)] # check which from the active list work
         activeIndex = [activeNames.index(k) for k in activeNamesMeasure] # get the index of the active & good sensors
         activeFuncs = [activeFuncs[k] for k in activeIndex] # use the index to get the good and active funcs
         sensors = [sensors[k] for k in activeIndex] # get the good and active sensor objects
